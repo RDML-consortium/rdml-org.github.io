@@ -1,0 +1,11 @@
+<site_config>
+    <database>
+        <host>127.0.0.1</host>
+        <name>db_name</name>
+        <username>db_user</username>
+        <password>db_pass</password>
+    </database>
+    <site>
+            <url>http://127.0.0.1/RDML/</url>
+    </site>
+</site_config>

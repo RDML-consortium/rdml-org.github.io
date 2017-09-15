@@ -1,0 +1,2 @@
+id	description	instrument	pcrFormat	software	bgDeterminationMethod	cqDetectionMethod	runDate
+RUN001	copy number determination VHL gene	icycler	96-well plate; A1-H12	iCycler.exe:3.1	PCR base Line subtracted	automated threshold and baseline settings	2004-03-09 00:00:00

@@ -1,0 +1,6 @@
+id	type
+gDNA	unkn
+1	unkn
+2	unkn
+SJ-NB-6	unkn
+NTC	ntc
