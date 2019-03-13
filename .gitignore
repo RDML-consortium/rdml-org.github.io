@@ -1,3 +1,4 @@
-# Config file
-config.xml
+_site
+.sass-cache
+.jekyll-metadata
 
