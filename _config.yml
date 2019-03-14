@@ -50,5 +50,5 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - favicon/
   - LICENSE
+  - old_homepage
