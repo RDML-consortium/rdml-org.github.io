@@ -1,10 +1,11 @@
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>RDML{% if page.title %} - {{ page.title }}{% endif %}</title>
+    <title>RDML{% if page.title %} - {{ page.title }}{% endif %}</title>
 
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.canonurl }}">
-</head> 
+    <link rel="stylesheet" href="{{ "/css/bootstrap4/bootstrap.min.css" | prepend: site.baseurl }}" >
+    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+    <link rel="icon" href="favicon.ico">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.canonurl }}">
+  </head>

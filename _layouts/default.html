@@ -3,23 +3,27 @@
 
 {% include head.html %}
 
-<body>
-<div id='wrapper'>
-<div id='container'>
+  <body>
+    <div class="container" id="rdml-main">
 
-<div id='header'>&nbsp;</div>
-<div id='center'>
-
+  <!-- Include navbar -->
 {% include navbar.html %}
 
+<!-- Include content -->
+      <div class="container" id="rdml-center">
 {{ content }}
+      </div>
 
-</div>
-
+<!-- Include footer -->
+      <div class="container" id="rdml-footer">
 {% include footer.html %}
+      </div>
 
-</div>
-</div>
-</body>
+    </div>
+
+    <script src="{{ "/js/jquery-3.2.1.slim.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/popper/popper.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/bootstrap4/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+  </body>
 
 </html>

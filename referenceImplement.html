@@ -1,0 +1,70 @@
+---
+layout: default
+title: Reference Implementation
+---
+  <h3>Reference Implementation</h3>
+  <p>We offer a reference implementation to ease the use of RDML. The
+    <a href="https://www.gear-genomics.com/rdml-tools/" target="_blank">RDML-Tools</a>
+    mainly provide a web page access to the functions of the
+    <a href="https://github.com/RDML-consortium/rdmlpython" target="_blank">RDML-Python library</a>,
+    designed to handle RDML files and their dependencies. The RDML-Tools can
+    view, create and edit RDML files and analyze their data.
+  </p>
+
+  <h4>RDML-Tools</h4>
+  <p>
+    The <a href="https://www.gear-genomics.com/rdml-tools/" target="_blank">RDML-Tools</a>
+    enable scientists to view, create and edit RDML files online through the
+    web browser without the need to install software.
+    <a href="https://www.gear-genomics.com/rdml-tools/edit.html" target="_blank">RDML-Edit</a>
+    can migrate between different RDML versions (on the more tab), once the
+    edit mode (on the main tab) is activated. RDML-Tools are GPL licensed and
+    the source code is available on
+    <a href="https://github.com/RDML-consortium/rdml-tools" target="_blank">GitHub</a>.
+  </p>
+
+  <h4>RDML-Python Library</h4>
+  <p>
+    The <a href="https://github.com/RDML-consortium/rdmlpython" target="_blank">RDML-Python library</a>
+    is designed to ease the use of RDML in Python projects. Users may choose
+    to install the library as a python package calling "python -m pip install
+    rdmlpython" or can download the source code from
+    <a href="https://github.com/RDML-consortium/rdmlpython" target="_blank">GitHub</a>.
+  </p>
+
+  <h4>Example Use of the RDML-Python Library</h4>
+  <p>
+    As an basic example create the file test.py with this content:
+  </p>
+  <pre>
+    #! /usr/bin/env python
+
+    import rdmlpython as rdml
+
+    # Print the version
+    vers = rdml.get_rdml_lib_version()
+    print("Version " + vers)
+
+    # Validate a file
+    cli_validate = rdml.Rdml()
+    cli_resValidate = cli_validate.validate(filename="test_2_raw_data.rdml")
+    print(cli_resValidate)
+
+    # Run LinRegPCR
+    cli_linRegPCR = rdml.Rdml("test_2_raw_data.rdml")
+    cli_expList = cli_linRegPCR.experiments()
+    cli_exp = cli_expList[0]
+    cli_runList = cli_exp.runs()
+    cli_run = cli_runList[0]
+    cli_result = cli_run.linRegPCR(updateRDML=True, saveResultsCSV=True, timeRun=True, verbose=True)
+    cli_linRegPCR.save("result.rdml")
+    with open("result.csv", "w") as cli_f:
+        cli_f.write(cli_result["resultsCSV"])
+  </pre>
+  <p>
+    Run the script with the
+    <a href="https://www.gear-genomics.com/rdml-tools/static/bin/test_2_raw_data.rdml">downloaded file</a>:
+  </p>
+  <pre>
+    python3 test.py
+  </pre>
