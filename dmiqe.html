@@ -5,9 +5,107 @@ title: dMIQE
 <h3>dMIQE: Minimum Information for Publication of Quantitative Digital PCR Experiments</h3>
 
 <p>The RDML file format is a recommended element in the minimum information for publication
-  of quantitative digital PCR experiments (dMIQE) guidelines.
+  of quantitative digital PCR experiments (dMIQE) guidelines
+  (<a href="https://pubmed.ncbi.nlm.nih.gov/32746458/" target="_blank">Huggett et al.,
+		Clinical Chemistry, 2020</a>)..
 </p>
 <p>
-   This page will be updated shortly with more information.
+   The aim of dMIQE, coordinated by a group of research-active scientists, is to provide authors, reviewers and
+    editors specifications for the minimum information that must be reported for a digital PCR experiment in order
+    to ensure its relevance, accuracy, correct interpretation and repeatability. A checklist, which should be
+    submitted along with the paper, is available for authors in preparing a manuscript employing digital PCR.
 </p>
 
+<p>
+  <a href="https://pubmed.ncbi.nlm.nih.gov/32746458/" target="_blank"><img src="./images/page/pdf_icon.png" alt="icon"/>&nbsp;&nbsp;&nbsp;Download the dMIQE paper</a><br /><br />
+  <a href="./files/docs/dMIQE_checklist.xlsx" target="_blank"><img src="./images/page/xls_icon.png" alt="icon"/>&nbsp;&nbsp;&nbsp;Download the dMIQE checklist</a><br /><br />
+</p>
+
+<p><span style="font-weight:bold;">Checklist for digital qPCR Assays</span></p>
+
+<table class="table-striped">
+  <tr><th>ITEM TO CHECK</th><th class="rdml-center-text">PROVIDED&nbsp;&nbsp;&nbsp;&nbsp;</th><th class="rdml-center-text">&nbsp;&nbsp;&nbsp;&nbsp;COMMENT</th></tr>
+  <tr><td></td><td class="rdml-center-text">Y/N</td></td><td></tr>
+  <tr><td colspan="3" class="table-dark">1. SPECIMEN</td></tr>
+  <tr><td>Detailed description of specimen type and numbers</td><td></td><td></td></tr>
+  <tr><td>Sampling procedure (including time to storage)</td><td></td><td></td></tr>
+  <tr><td>Sample aliquotation, storage conditions and duration </td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">2. NUCLEIC ACID EXTRACTION</td></tr>
+  <tr><td>Description of extraction method including amount of sample processed</td><td></td><td></td></tr>
+  <tr><td>Volume of solvent used to elute/resuspend extract</td><td></td><td></td></tr>
+  <tr><td>Number of extraction replicates</td><td></td><td></td></tr>
+  <tr><td>Extraction blanks included?</td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">3. NUCLEIC ACID ASSESSMENT AND STORAGE</td></tr>
+  <tr><td>Method to evaluate quality of nucleic acids</td><td></td><td></td></tr>
+  <tr><td>Method to evaluate quantity of nucleic acids (including molecular weight and calculations when using mass)</td><td></td><td></td></tr>
+  <tr><td>Storage conditions: temperature, concentration, duration, buffer, aliquots</td><td></td><td></td></tr>
+  <tr><td>Clear description of dilution steps used to prepare working DNA solution </td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">4. NUCLEIC ACID MODIFICATION</td></tr>
+  <tr><td>Template modification (digestion, sonication, pre-amplification, bisulphite etc.)</td><td></td><td></td></tr>
+  <tr><td>Details of repurification following modification if performed </td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">5. REVERSE TRANSCRIPTION</td></tr>
+  <tr><td>cDNA priming method and concentration</td><td></td><td></td></tr>
+  <tr><td>One or two step protocol (include reaction details for two step)</td><td></td><td></td></tr>
+  <tr><td>Amount of RNA added per reaction</td><td></td><td></td></tr>
+  <tr><td>Detailed reaction components and conditions</td><td></td><td></td></tr>
+  <tr><td>Estimated copies measured with and without addition of RT*</td><td></td><td></td></tr>
+  <tr><td>Manufacturer of reagents used with catalogue and lot numbers</td><td></td><td></td></tr>
+  <tr><td>Storage of cDNA: temperature, concentration, duration, buffer and aliquots</td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">6. dPCR OLIGONUCLEOTIDES DESIGN AND TARGET INFORMATION</td></tr>
+  <tr><td>Sequence accession number or official gene symbol</td><td></td><td></td></tr>
+  <tr><td>Method (software) used for design and in silico verification</td><td></td><td></td></tr>
+  <tr><td>Location of amplicon</td><td></td><td></td></tr>
+  <tr><td>Amplicon length </td><td></td><td></td></tr>
+  <tr><td>Primer and probe sequences (or amplicon context sequence)**</td><td></td><td></td></tr>
+  <tr><td>Location and identity of any modifications</td><td></td><td></td></tr>
+  <tr><td>Manufacturer of oligonucleotides</td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">7. dPCR PROTOCOL</td></tr>
+  <tr><td>Manufacturer of dPCR instrument and instrument model</td><td></td><td></td></tr>
+  <tr><td>Buffer/kit manufacturer with catalogue and lot number</td><td></td><td></td></tr>
+  <tr><td>Primer and probe concentration</td><td></td><td></td></tr>
+  <tr><td>Pre-reaction volume and composition (incl. amount of template and if restriction enzyme added)</td><td></td><td></td></tr>
+  <tr><td>Template treatment (initial heating or chemical denaturation)</td><td></td><td></td></tr>
+  <tr><td>Polymerase identity and concentration, Mg<sup>++</sup> and  dNTP concentrations***</td><td></td><td></td></tr>
+  <tr><td>Complete thermocycling parameters</td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">8. ASSAY VALIDATION</td></tr>
+  <tr><td>Details of optimisation performed</td><td></td><td></td></tr>
+  <tr><td>Analytical specificity (vs. related sequences) and limit of blank (LOB)</td><td></td><td></td></tr>
+  <tr><td>Analytical sensitivity/LoD and how this was evaluated </td><td></td><td></td></tr>
+  <tr><td>Testing for inhibitors (from biological matrix/extraction)</td><td></td><td></td></tr>
+  <tr><td colspan="3" class="table-dark">9. DATA ANALYSIS</td></tr>
+  <tr><td>Description of dPCR experimental design</td><td></td><td></td></tr>
+  <tr><td>Comprehensive details negative and positive of controls (whether applied for QC or for estimation of error)</td><td></td><td></td></tr>
+  <tr><td>Partition classification method (thresholding)</td><td></td><td></td></tr>
+  <tr><td>Examples of positive and negative experimental results (including fluorescence plots in supplemental material)</td><td></td><td></td></tr>
+  <tr><td>Description of technical replication </td><td></td><td></td></tr>
+  <tr><td>Repeatability (intra-experiment variation)</td><td></td><td></td></tr>
+  <tr><td>Reproducibility (inter-experiment/user/lab etc. variation )</td><td></td><td></td></tr>
+  <tr><td>Number of partitions measured (average and standard deviation ) </td><td></td><td></td></tr>
+  <tr><td>Partition volume </td><td></td><td></td></tr>
+  <tr><td>Copies per partition (λ or equivalent ) (average and standard deviation) </td><td></td><td></td></tr>
+  <tr><td>dPCR analysis program (source, version)</td><td></td><td></td></tr>
+  <tr><td>Description of normalisation method</td><td></td><td></td></tr>
+  <tr><td>Statistical methods used for analysis   </td><td></td><td></td></tr>
+  <tr><td>Data transparency</td><td></td><td></td></tr>
+</table>
+
+<p>
+  <br />
+</p>
+<p>dMIQE2020 checklist for authors, reviewers and editors. Authors should fill detail whether information is provided.
+    Where 'yes' is selected use comment box to detail location of information or to include the information. Where 'no'
+    is selected use comment box to outline rationale for omission. Sections 4 and 5 may not apply depending on
+    experiment.
+</p>
+<p><strong>*</strong>: Assessing the absence of DNA using a no RT assay (or where RT has been inactivated) is essential
+    when first extracting RNA. Once the sample has been validated as DNA-free, inclusion of a no-RT control is
+    desirable, but no longer essential.
+</p>
+<p><strong>**</strong>: Disclosure of the primer and probe sequence is highly desirable and strongly encouraged.
+    However, since not all commercial pre-designed assay vendors provide this information when it is not available
+    assay context sequences must be submitted (<a href="https://pubmed.ncbi.nlm.nih.gov/21421813/" target="_blank">Bustin
+    et al. Primer sequence disclosure: A clarification of the miqe guidelines. Clin Chem 2011;57:919-21.</a>)
+</p>
+<p><strong>***</strong>: Details of reaction components is highly desirable, however not always possible for commercial
+    disclosure reasons. Inclusion of catalogue number is essential where component reagent details are not available.
+</p>
