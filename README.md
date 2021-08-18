@@ -11,7 +11,7 @@ Install the packages and get a copy of the repository.
 
 `sudo gem install bundler jekyll`
 
-`git clone https://github.com/rdml-org/rdml-org.github.io.git rdml_homepage`
+`git clone https://github.com/RDML-consortium/rdml-consortium.github.io.git rdml_homepage`
 
 `cd rdml_homepage`
 
