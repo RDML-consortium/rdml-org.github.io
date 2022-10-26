@@ -8,7 +8,7 @@
    <xs:documentation>
      The MIT License
 
-     Copyright (c) 2008-2020 the RDML-consortium
+     Copyright (c) 2008-2022 the RDML-consortium
 
      Permission is hereby granted, free of charge, to any person obtaining a copy
      of this software and associated documentation files (the "Software"), to deal
@@ -132,6 +132,16 @@
          </xs:documentation>
        </xs:annotation>
      </xs:element>
+     <xs:element name="N0" type="xs:float" minOccurs="0">
+       <xs:annotation>
+         <xs:documentation>
+           Pronounced N-zero. Target quantity or starting concentration per
+           reaction, expressed in calculated arbitrary fluorescence units.
+           Negative values are used to express following conditions:
+           Not Available: -1.0
+         </xs:documentation>
+       </xs:annotation>
+     </xs:element>
      <xs:element name="ampEffMet" type="xs:string" minOccurs="0">
        <xs:annotation>
          <xs:documentation>
@@ -145,6 +155,8 @@
            Amplification efficiency should be given as the fold-increase
            of DNA per cycle (the base of the exponential function),
            for example 1.95 for 95% efficiency.
+           If absent, the ideal efficiency of 2.0 should be used for
+           calculations.
          </xs:documentation>
        </xs:annotation>
      </xs:element>
@@ -153,6 +165,42 @@
          <xs:documentation>
            The standard error of the value provided in "ampEff"
            should be given.
+         </xs:documentation>
+       </xs:annotation>
+     </xs:element>
+     <xs:element name="corrF" type="xs:float" minOccurs="0">
+       <xs:annotation>
+         <xs:documentation>
+           The correction factor indicating the fraction of the expected
+           product in all products. A factor of 0.25 indicates that the
+           expected product contributes only a quarter to the observed
+           results.
+           corrN0 = (N0 * corrF) / corrP
+           If absent, the ideal correction factor of 1.0 should be used
+           for calculations.
+         </xs:documentation>
+       </xs:annotation>
+     </xs:element>
+     <xs:element name="corrP" type="xs:float" minOccurs="0">
+       <xs:annotation>
+         <xs:documentation>
+           The correction factor to correct for inter run differences
+           within this experiment.
+           corrN0 = (N0 * corrF) / corrP
+           If absent, the ideal correction factor of 1.0 should be used
+           for calculations.
+           Negative values are used to express following conditions:
+           Not Available: -1.0
+         </xs:documentation>
+       </xs:annotation>
+     </xs:element>
+     <xs:element name="corrCq" type="xs:float" minOccurs="0">
+       <xs:annotation>
+         <xs:documentation>
+           Corrected quantification cycle - The corrected calculated fractional
+           PCR cycle used for downstream quantification.
+           Negative values are used to express following conditions:
+           Not Available: -1.0
          </xs:documentation>
        </xs:annotation>
      </xs:element>
@@ -632,6 +680,29 @@
          </xs:documentation>
        </xs:annotation>
      </xs:element>
+     <xs:element name="excluded" type="xs:string" minOccurs="0">
+       <xs:annotation>
+         <xs:documentation>
+           Excluded - If present, this entry should not be evaluated. Do not set
+           this element to false if this entry is valid, leave the entire
+           element out instead.
+           This element is equivalent to the excl element in dataType.
+           It may contain a string with reason for exclusion. Several reasons
+           for exclusion should be seperated by semicolons ";".
+         </xs:documentation>
+       </xs:annotation>
+     </xs:element>
+     <xs:element name="note" type="xs:string" minOccurs="0">
+       <xs:annotation>
+         <xs:documentation>
+           Note - Do not set this element to false if this element is not needed,
+           leave the entire element out instead.
+           It may contain a string with notes to the data element which do not
+           lead to exclusion of the entry. Several reasons for exclusion should
+           be seperated by semicolons ";".
+         </xs:documentation>
+       </xs:annotation>
+     </xs:element>
      <xs:element name="pos" type="xs:int">
        <xs:annotation>
          <xs:documentation>
@@ -664,7 +735,7 @@
        <xs:annotation>
          <xs:documentation>
            Concentration - The concentration in copies per microliter reaction
-	   mix.
+           mix.
          </xs:documentation>
        </xs:annotation>
      </xs:element>
@@ -753,6 +824,7 @@
      <xs:element name="value" type="xs:float"/>
      <xs:element name="unit" type="rdml:quantityUnitType"/>
    </xs:sequence>
+   <xs:attribute name="targetId" type="rdml:idType"/>
  </xs:complexType>
 
  <xs:simpleType name="quantityUnitType">
@@ -992,15 +1064,23 @@
      <xs:element name="documentation" type="rdml:idReferencesType" minOccurs="0" maxOccurs="unbounded"/>
      <xs:element name="xRef" type="rdml:xRefType" minOccurs="0" maxOccurs="unbounded"/>
      <xs:element name="annotation" type="rdml:annotationType" minOccurs="0" maxOccurs="unbounded"/>
-     <xs:element name="type" type="rdml:sampleTargetType" default="unkn" maxOccurs="unbounded"/>
-     <xs:element name="interRunCalibrator" type="xs:boolean" default="false" minOccurs="0">
+     <xs:element name="type" type="rdml:sampleTargetType" default="unkn" minOccurs="0" maxOccurs="unbounded">
        <xs:annotation>
          <xs:documentation>
-           True if this sample is used as inter run calibrator.
+           If the element type is absent, the sample type is "unkn" (default value).
          </xs:documentation>
        </xs:annotation>
      </xs:element>
-     <xs:element name="quantity" type="rdml:quantityType" minOccurs="0">
+     <xs:element name="interRunCalibrator" type="xs:boolean" default="false" minOccurs="0">
+       <xs:annotation>
+         <xs:documentation>
+           True if this sample is used as inter run calibrator. A inter run calibrator is
+           an identical sample measured in different runs, in order to detect and correct
+           inter-run differences.
+         </xs:documentation>
+       </xs:annotation>
+     </xs:element>
+     <xs:element name="quantity" type="rdml:quantityType" minOccurs="0" maxOccurs="unbounded">
        <xs:annotation>
          <xs:documentation>
            Quantity - The reference quantity of this sample. It should be only used if the 
@@ -1009,14 +1089,19 @@
            Only the use of true numbers is valid like 1, 10, 100, 1000 or 1, 0.1, 0.01, 
            0.001. The use of exponents is not valid like 1, 2, 3, 4 or -1, -2, -3, -4 
            because it will not be interpreted as 10E1, 10E2, 10E3, 10E4 or 10E-1, 10E-2, 
-           10E-3, 10E-4.         
+           10E-3, 10E-4.
+           The same sample could have the quantityType 1000 copies per microliter for one
+           target or 1 fold for all targets. Optical calibrators work independent of
+           targets. Therefor several entries with or without target are allowed and can be
+           linked to a target.
          </xs:documentation>
        </xs:annotation>
      </xs:element>
      <xs:element name="calibratorSample" type="xs:boolean" default="false" minOccurs="0">
        <xs:annotation>
          <xs:documentation>
-           True if this sample is used as calibrator sample.
+           True if this sample is used as calibrator sample. A calibrator sample is a
+           reference sample within a run to which results are rescaled.
          </xs:documentation>
        </xs:annotation>
      </xs:element>
@@ -1494,6 +1579,10 @@
    </xs:keyref>
    <xs:keyref name="targetIdKeyRef3" refer="rdml:targetIdKey">
      <xs:selector xpath="./rdml:sample/rdml:type" />
+     <xs:field xpath="@targetId" />
+   </xs:keyref>
+   <xs:keyref name="targetIdKeyRef4" refer="rdml:targetIdKey">
+     <xs:selector xpath="./rdml:sample/rdml:quantity" />
      <xs:field xpath="@targetId" />
    </xs:keyref>
    <xs:key name="targetIdKey">
